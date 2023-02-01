@@ -8,6 +8,7 @@ import store from "./store/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  // react-redux 에서도 ContextProvider 와 비슷한 형태 ex) <ContextProvider value = {value}>
   <Provider store={store}>
     <App />
   </Provider>
