@@ -1,38 +1,13 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
-
-const initialState = { counter: 0, showCounter: true };
-
-// 이건 counter 에 관한 Slice 이다.
-const counterSlice = createSlice({
-  name: "coutner", // 식별자
-  initialState,
-  reducers: {
-    increment(state) {
-      // Reducer를 만들어서 사용할 때는 아래와 같이 상태를 변경하는 것은 안된다고 했다.
-      // 그러나 redux-toolkit 패지키 내부적으로 알아서 항상 새로운 객체를 생성하여 변경할 수 없는 코드로 변환된 값을 집어 넣는다.
-      // 그러므로 개발자는 상태의 불변성이나 반복된 객체를 복사할 필요도 없어지게 되므로 신경쓴게 줄어든다.
-      state.counter++;
-    },
-    decrement(state) {
-      state.counter--;
-    },
-    increase(state, action) {
-      state.counter = state.counter + action.payload;
-    },
-    toggleCountner(state) {
-      state.showCounter = !state.showCounter;
-    },
-  },
-});
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./authentication";
+import counterReducer from "./counter";
 
 // createStore vs configureStore
 // 공통점 : 둘 다 store를 만들어 준다.
 // 차이점 : configureStore 는 여러개의 reducer를 쉽게 하나로 합칠 수 있다.
 const store = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: { counter: counterReducer, auth: authReducer },
 });
-
-export const counterActions = counterSlice.actions;
 
 export default store;
 

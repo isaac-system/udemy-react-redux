@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { counterActions } from "../store";
+import { counterActions } from "../store/counter";
 
 import classes from "./Counter.module.css";
 
 const Counter = () => {
   const dispatch = useDispatch(); // useDispatch : action 을 통해 상태 변경을 위해
-  const counter = useSelector((state) => state.counter); // useSeletor : Central Data Store 에서 어떠한 상태를 getState() 하기위해
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter); // useSeletor : Central Data Store 에서 어떠한 상태를 getState() 하기위해
+  const show = useSelector((state) => state.counter.showCounter);
   // redux가 저장소에서 상태변경이 일어나면 이 컴포넌트를 re-rendering 함 (즉, 항상 최신의 상태를 화면에 나타낼 수 있다.)
 
   const incrementHandler = () => {
